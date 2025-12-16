@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b2545; /* Base from Catppuccin Mocha */
+    color: #eef4ed; /* Text color from Catppuccin Mocha */
+    font-family: 'Poppins', sans-serif; /* Updated font to Poppins */
+    font-weight: 300; /* Light weight for a soft look */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    max-width: 1000px;
+    padding: 20px;
+}
+
+.center-logo {
+    margin-bottom: 20px;
+}
+
+.center-logo .logo {
+    width: 30vw; /* Increase the width to 30% of the viewport width */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 250px; /* Set a larger maximum width for larger screens */
+    min-width: 120px; /* Ensure it doesn't shrink too much on small screens */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Dropdown styling */
+#search-engine-dropdown {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background-color: #134074;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+}
+
+.dropdown-item {
+    padding: 10px;
+    color: #eef4ed;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #134074; /* Slight hover effect */
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #134074;
+    font-size: 1.2rem;
+    cursor: pointer; /* Make the icon clickable */
+}
+
+/* Search Bar Section */
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative; /* For positioning elements */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Soft shadow around search bar */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px;
+    background-color: #134074; /* Surface0 background */
+}
+
+/* Wrapper for input and search icon */
+.search-input-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.search-input-wrapper input {
+    padding: 12px 40px 12px 40px; /* Extra padding for the search icon and button */
+    font-size: 1.1rem;
+    font-weight: 400; /* Regular weight for input text */
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    background-color: #134074;
+    color: #eef4ed; /* Text */
+    box-shadow: none; /* Remove inner shadow */
+    outline: none;
+}
+
+/* Search icon inside the input */
+.search-input-wrapper .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #eef4ed; /* Pink from Catppuccin Mocha */
+    font-size: 1.2rem;
+}
+
+/* Placeholder text style */
+.search-input-wrapper input::placeholder {
+    color: #9399b2; /* Overlay2 from Catppuccin Mocha */
+    font-weight: 300; /* Lighter placeholder text */
+}
+
+/* Search Button */
+.search-bar button {
+    padding: 12px 16px;
+    font-size: 1.1rem;
+    border: none;
+    background-color: #134074; /* Surface1 from Catppuccin Mocha */
+    color: #eef4ed; /* Pink from Catppuccin Mocha */
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+
+/* Categories Section */
+.categories {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    gap: 30px;
+}
+
+.category {
+    text-align: center;
+    flex-grow: 1;
+    flex-basis: calc(20% - 30px);
+    min-width: 150px;
+    max-width: 200px;
+    background-color: #134074; /* Background of each category box */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* Soft shadow for category boxes */
+    padding: 20px 15px; /* Padding inside the boxes */
+    transition: transform 0.2s ease; /* Add a subtle hover effect */
+}
+
+.category:hover {
+    transform: translateY(-5px); /* Lift the box on hover */
+}
+
+.category .icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #eef4ed; /* Red from Catppuccin Mocha */
+}
+
+.category ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.category li {
+    margin: 8px 0;
+}
+
+.category li a {
+    text-decoration: none;
+    color: #8da9c4; /* Blue from Catppuccin Mocha */
+    font-size: 1rem;
+    font-weight: 400; /* Regular font weight */
+    transition: color 0.2s ease;
+}
+
+.category li a:hover {
+    color: #eef4ed; /* Yellow from Catppuccin Mocha */
+}
