@@ -1,107 +1,525 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts: Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Instrument Serif', serif;
+            background: #0a0a0a;
+            min-height: 100vh;
+            color: #e0e0e0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Search Section */
+        .search-section {
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            background: #1a1a1a;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a2a;
+            overflow: visible;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            padding: 15px 25px;
+        }
+
+        .search-engine-selector {
+            display: flex;
+            gap: 8px;
+            margin-right: 15px;
+            padding-right: 15px;
+            border-right: 2px solid #2a2a2a;
+        }
+
+        .engine-btn {
+            padding: 6px 12px;
+            border: 1px solid #2a2a2a;
+            background: #0a0a0a;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+            color: #888;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .engine-btn:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border-color: #3a3a3a;
+        }
+
+        .engine-btn.active {
+            background: #e0e0e0;
+            color: #0a0a0a;
+            border-color: #e0e0e0;
+        }
+
+        #searchInput {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #e0e0e0;
+            background: transparent;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        #searchInput::placeholder {
+            color: #666;
+        }
+
+        .search-btn {
+            background: #e0e0e0;
+            border: none;
+            color: #0a0a0a;
+            padding: 8px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            margin-left: 10px;
+            font-family: 'Instrument Serif', serif;
+        }
+
+        .search-btn:hover {
+            background: #fff;
+            transform: translateX(2px);
+        }
+
+        /* Suggestions Dropdown */
+        .suggestions-container {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 20px;
+            margin-top: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            max-height: 400px;
+            overflow-y: auto;
+            display: none;
+            z-index: 1000;
+        }
+
+        .suggestions-container.active {
+            display: block;
+        }
+
+        .suggestion-item {
+            padding: 12px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background 0.2s;
+            color: #e0e0e0;
+            border-bottom: 1px solid #222;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:first-child {
+            border-radius: 20px 20px 0 0;
+        }
+
+        .suggestion-item:hover {
+            background: #2a2a2a;
+        }
+
+        .suggestion-content {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+
+        .suggestion-icon {
+            width: 18px;
+            height: 18px;
+            margin-right: 12px;
+            color: #666;
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            color: #444;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 20px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .suggestion-item:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .delete-btn:hover {
+            color: #ff6b6b;
+        }
+
+        .section-title {
+            padding: 12px 25px 8px;
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: #151515;
+            letter-spacing: 1px;
+        }
+
+        .clear-history {
+            padding: 12px 25px;
+            text-align: center;
+            color: #888;
+            cursor: pointer;
+            font-size: 13px;
+            border-top: 1px solid #222;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .clear-history:hover {
+            background: #2a2a2a;
+            color: #e0e0e0;
+        }
+
+        /* Links Grid */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .link-category {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+
+        .link-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: #3a3a3a;
+        }
+
+        .link-category h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #e0e0e0;
+            border-bottom: 2px solid #2a2a2a;
+            padding-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .link-category ul {
+            list-style: none;
+        }
+
+        .link-category li {
+            margin-bottom: 10px;
+        }
+
+        .link-category a {
+            color: #aaa;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .link-category a:hover {
+            color: #e0e0e0;
+            background: #2a2a2a;
+            padding-left: 10px;
+        }
+
+        /* Scrollbar styling */
+        .suggestions-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .suggestions-container::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 20px;
+        }
+
+        .suggestions-container::-webkit-scrollbar-thumb {
+            background: #2a2a2a;
+            border-radius: 20px;
+        }
+
+        .suggestions-container::-webkit-scrollbar-thumb:hover {
+            background: #3a3a3a;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- Logo Section -->
-        <div class="center-logo">
-            <img src="logo.png" alt="Logo" class="logo"> <!-- Replace with your logo -->
+        <div class="logo-section">
+            <div class="logo">🚀</div>
         </div>
 
-        <!-- Search Bar Section -->
-        <div class="search-bar">
-            <!-- Search Icon on the left inside input -->
-            <div class="search-input-wrapper">
-                <i class="fas fa-search search-icon" id="search-icon"></i> <!-- Updated to add an id for JS -->
-                <input type="text" placeholder="Search with Google" id="search-input">
-                
-                <!-- Dropdown for search engine selection -->
-                <div id="search-engine-dropdown" class="dropdown hidden">
-                    <div class="dropdown-item" onclick="setSearchEngine('Google')">Google</div>
-                    <div class="dropdown-item" onclick="setSearchEngine('DuckDuckGo')">DuckDuckGo</div>
-                    <div class="dropdown-item" onclick="setSearchEngine('Bing')">Bing</div>
+        <div class="search-section">
+            <div class="search-wrapper">
+                <div class="search-box">
+                    <div class="search-engine-selector">
+                        <button class="engine-btn active" data-engine="google">Google</button>
+                        <button class="engine-btn" data-engine="duckduckgo">DuckDuckGo</button>
+                        <button class="engine-btn" data-engine="bing">Bing</button>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Search the web...">
+                    <button class="search-btn" id="searchBtn">➤</button>
                 </div>
+                <div class="suggestions-container" id="suggestionsContainer"></div>
             </div>
-
-            <!-- Search Button (Arrow) on the far right -->
-            <button onclick="search()">&#x27A4;</button> <!-- Arrow symbol for button -->
         </div>
 
-        <!-- Categories Section -->
-        <div class="categories">
-            <!-- First Category: Coding Platforms -->
-            <div class="category">
-                <div class="icon"><i class="fa-solid fa-chess-knight"></i></div> <!-- Terminal icon -->
+        <div class="links-grid">
+            <div class="link-category">
+                <h3>♟️ Chess</h3>
                 <ul>
-                    <li><a href="https://www.chess.com" target="_blank">Chess.com</a></li>
-                    <li><a href="https://www.lichess.org" target="_blank">Lichess</a></li>
-                    <li><a href="https://www.fide.com" target="_blank">FIDE</a></li>
-                    <li><a href="https://www.en.chessbase.com" target="_blank">ChessBase</a></li>
-                    <li><a href="https://www.wintrchess.com" target="_blank">WintrChess</a></li>
+                    <li><a href="https://www.chess.com">Chess.com</a></li>
+                    <li><a href="https://www.lichess.org">Lichess</a></li>
+                    <li><a href="https://www.fide.com">FIDE</a></li>
+                    <li><a href="https://www.en.chessbase.com">ChessBase</a></li>
+                    <li><a href="https://www.wintrchess.com">WintrChess</a></li>
                 </ul>
             </div>
 
-            <!-- Second Category: Programming Tools -->
-            <div class="category">
-                <div class="icon"><i class="fas fa-code"></i></div> <!-- Code icon -->
+            <div class="link-category">
+                <h3>💻 Development</h3>
                 <ul>
-                    <li><a href="https://www.python.org" target="_blank">Python</a></li>
-                    <li><a href="https://www.github.com" target="_blank">GitHub</a></li>
-                    <li><a href="https://devdocs.io" target="_blank">DevDocs</a></li>
-                    <li><a href="https://stackoverflow.com" target="_blank">StackOverflow</a>
-                    <li><a href="https://gitlab.com" target="_blank">Gitlab</a></li>
+                    <li><a href="https://www.python.org">Python</a></li>
+                    <li><a href="https://www.github.com">GitHub</a></li>
+                    <li><a href="https://devdocs.io">DevDocs</a></li>
+                    <li><a href="https://stackoverflow.com">StackOverflow</a></li>
+                    <li><a href="https://gitlab.com">Gitlab</a></li>
                 </ul>
             </div>
 
-            <!-- Third Category: Media -->
-            <div class="category">
-                <div class="icon"><i class="fa-brands fa-google"></i></div> <!-- TV icon -->
+            <div class="link-category">
+                <h3>🔧 Google Tools</h3>
                 <ul>
-                    <li><a href="https://www.youtube.com" target="_blank">YouTube</a></li>
-                    <li><a href="https://drive.google.com" target="_blank">Drive</a></li>
-                    <li><a href="https://mail.google.com" target="_blank">Gmail</a></li>
-                    <li><a href="https://photos.google.com" target="_blank">Photos</a></li>
-                    <li><a href="https://meet.google.com" target="_blank">Meet</a></li>
+                    <li><a href="https://www.youtube.com">YouTube</a></li>
+                    <li><a href="https://drive.google.com">Drive</a></li>
+                    <li><a href="https://mail.google.com">Gmail</a></li>
+                    <li><a href="https://photos.google.com">Photos</a></li>
+                    <li><a href="https://meet.google.com">Meet</a></li>
                 </ul>
             </div>
 
-            <!-- Fourth Category: Music -->
-            <div class="category">
-                <div class="icon"><i class="fas fa-music"></i></div> <!-- Music icon -->
+            <div class="link-category">
+                <h3>🎵 Music</h3>
                 <ul>
-                    <li><a href="https://www.spotify.com" target="_blank">Spotify</a></li>
-                    <li><a href="https://www.soundcloud.com" target="_blank">SoundCloud</a></li>
-                    <li><a href="https://www.deezer.com" target="_blank">Deezer</a></li>
-                    <li><a href="https://www.mixcloud.com" target="_blank">MixCloud</a></li>
-                    <li><a href="https://www.radiocore.org" target="_blank">Core Radio</a></li>
+                    <li><a href="https://www.spotify.com">Spotify</a></li>
+                    <li><a href="https://www.soundcloud.com">SoundCloud</a></li>
+                    <li><a href="https://www.deezer.com">Deezer</a></li>
+                    <li><a href="https://www.mixcloud.com">MixCloud</a></li>
+                    <li><a href="https://www.radiocore.org">Core Radio</a></li>
                 </ul>
             </div>
 
-            <!-- Fifth Category: Creative Platforms -->
-            <div class="category">
-                <div class="icon"><i class="fa-solid fa-user"></i></div> <!-- Paint brush icon -->
+            <div class="link-category">
+                <h3>📱 Social</h3>
                 <ul>
-                    <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
-                    <li><a href="https://www.x.com" target="_blank">Twitter(X)</a></li>
-                    <li><a href="https://www.reddit.com" target="_blank">Reddit</a></li>
-                    <li><a href="https://www.web.whatsapp.com" target="_blank">Whatsapp</a></li>
-                    <li><a href="https://www.linkedin.com" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com">Instagram</a></li>
+                    <li><a href="https://www.x.com">Twitter (X)</a></li>
+                    <li><a href="https://www.reddit.com">Reddit</a></li>
+                    <li><a href="https://www.web.whatsapp.com">WhatsApp</a></li>
+                    <li><a href="https://www.linkedin.com">LinkedIn</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <!-- Link to external JavaScript -->
-    <script src="script.js"></script>
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const suggestionsContainer = document.getElementById('suggestionsContainer');
+        const engineButtons = document.querySelectorAll('.engine-btn');
+        
+        let currentEngine = 'google';
+        let searchHistory = [];
+
+        // Predefined suggestions
+        const suggestions = [
+            'JavaScript tutorials',
+            'Python programming',
+            'Chess strategies',
+            'Web development',
+            'GitHub repositories',
+            'React documentation',
+            'CSS animations',
+            'Stack Overflow solutions'
+        ];
+
+        // Search engine URLs
+        const searchEngines = {
+            google: 'https://www.google.com/search?q=',
+            duckduckgo: 'https://duckduckgo.com/?q=',
+            bing: 'https://www.bing.com/search?q='
+        };
+
+        // Switch search engine
+        engineButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                engineButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentEngine = btn.dataset.engine;
+            });
+        });
+
+        // Perform search
+        function performSearch() {
+            const query = searchInput.value.trim();
+            if (query) {
+                addToHistory(query);
+                window.location.href = searchEngines[currentEngine] + encodeURIComponent(query);
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        // Show suggestions
+        searchInput.addEventListener('input', showSuggestions);
+        searchInput.addEventListener('focus', showSuggestions);
+
+        function showSuggestions() {
+            const query = searchInput.value.toLowerCase();
+            suggestionsContainer.innerHTML = '';
+
+            const filteredSuggestions = suggestions.filter(s => 
+                s.toLowerCase().includes(query)
+            );
+
+            if (!query && searchHistory.length > 0) {
+                suggestionsContainer.innerHTML += '<div class="section-title">Recent Searches</div>';
+                searchHistory.forEach((item, index) => {
+                    suggestionsContainer.innerHTML += createSuggestionItem(item, 'history', index);
+                });
+                suggestionsContainer.innerHTML += '<div class="clear-history" onclick="clearHistory()">Clear History</div>';
+            }
+
+            if (filteredSuggestions.length > 0 && query) {
+                if (searchHistory.length > 0) {
+                    suggestionsContainer.innerHTML += '<div class="section-title">Suggestions</div>';
+                }
+                filteredSuggestions.forEach(item => {
+                    suggestionsContainer.innerHTML += createSuggestionItem(item, 'suggestion');
+                });
+            }
+
+            suggestionsContainer.classList.toggle('active', suggestionsContainer.innerHTML !== '');
+        }
+
+        function createSuggestionItem(text, type, index = null) {
+            const icon = type === 'history' 
+                ? '<svg class="suggestion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>'
+                : '<svg class="suggestion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>';
+
+            const deleteBtn = type === 'history' 
+                ? `<button class="delete-btn" onclick="deleteHistoryItem(${index}, event)">×</button>`
+                : '';
+
+            return `
+                <div class="suggestion-item" onclick="selectSuggestion('${text.replace(/'/g, "\\'")}')">
+                    <div class="suggestion-content">
+                        ${icon}
+                        <span>${text}</span>
+                    </div>
+                    ${deleteBtn}
+                </div>
+            `;
+        }
+
+        function selectSuggestion(text) {
+            searchInput.value = text;
+            suggestionsContainer.classList.remove('active');
+            performSearch();
+        }
+
+        function addToHistory(text) {
+            searchHistory = searchHistory.filter(item => item !== text);
+            searchHistory.unshift(text);
+            if (searchHistory.length > 10) {
+                searchHistory.pop();
+            }
+        }
+
+        function deleteHistoryItem(index, event) {
+            event.stopPropagation();
+            searchHistory.splice(index, 1);
+            showSuggestions();
+        }
+
+        function clearHistory() {
+            searchHistory = [];
+            showSuggestions();
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-wrapper')) {
+                suggestionsContainer.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
