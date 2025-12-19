@@ -1,9 +1,6 @@
-<<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <title>Welcome !</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -20,6 +17,7 @@
             min-height: 100vh;
             color: #e0e0e0;
             padding: 40px 20px;
+            font-size: 17px;
         }
 
         .container {
@@ -33,17 +31,16 @@
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             margin-bottom: 20px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: inline-block;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         /* Search Section */
@@ -76,54 +73,55 @@
         }
 
         .engine-btn {
-            padding: 6px 12px;
+            padding: 8px 14px;
             border: 1px solid #2a2a2a;
             background: #0a0a0a;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             transition: all 0.3s;
-            color: #888;
-            font-family: 'Instrument Serif', serif;
+            color: #aaa;
+            font-family: 'ADLaM Display', serif;
         }
 
         .engine-btn:hover {
             background: #2a2a2a;
-            color: #e0e0e0;
+            color: #f5f5f5;
             border-color: #3a3a3a;
         }
 
         .engine-btn.active {
-            background: #e0e0e0;
+            background: #f5f5f5;
             color: #0a0a0a;
-            border-color: #e0e0e0;
+            border-color: #f5f5f5;
         }
 
         #searchInput {
             flex: 1;
             border: none;
             outline: none;
-            font-size: 16px;
-            color: #e0e0e0;
+            font-size: 17px;
+            color: #f5f5f5;
             background: transparent;
-            font-family: 'Instrument Serif', serif;
+            font-family: 'ADLaM Display', serif;
         }
 
         #searchInput::placeholder {
-            color: #666;
+            color: #777;
         }
 
         .search-btn {
-            background: #e0e0e0;
+            background: #f5f5f5;
             border: none;
             color: #0a0a0a;
-            padding: 8px 20px;
+            padding: 10px 22px;
             border-radius: 25px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             transition: all 0.3s;
             margin-left: 10px;
-            font-family: 'Instrument Serif', serif;
+            font-family: 'ADLaM Display', serif;
+            font-weight: 600;
         }
 
         .search-btn:hover {
@@ -153,14 +151,15 @@
         }
 
         .suggestion-item {
-            padding: 12px 25px;
+            padding: 14px 25px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
             transition: background 0.2s;
-            color: #e0e0e0;
+            color: #f5f5f5;
             border-bottom: 1px solid #222;
+            font-size: 16px;
         }
 
         .suggestion-item:last-child {
@@ -208,28 +207,28 @@
         }
 
         .section-title {
-            padding: 12px 25px 8px;
-            font-size: 11px;
-            color: #666;
+            padding: 14px 25px 10px;
+            font-size: 12px;
+            color: #888;
             text-transform: uppercase;
             font-weight: 600;
             background: #151515;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         .clear-history {
-            padding: 12px 25px;
+            padding: 14px 25px;
             text-align: center;
-            color: #888;
+            color: #aaa;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 15px;
             border-top: 1px solid #222;
             border-radius: 0 0 20px 20px;
         }
 
         .clear-history:hover {
             background: #2a2a2a;
-            color: #e0e0e0;
+            color: #f5f5f5;
         }
 
         /* Links Grid */
@@ -256,8 +255,8 @@
 
         .link-category h3 {
             margin-bottom: 15px;
-            font-size: 18px;
-            color: #e0e0e0;
+            font-size: 20px;
+            color: #f5f5f5;
             border-bottom: 2px solid #2a2a2a;
             padding-bottom: 10px;
             font-weight: normal;
@@ -268,22 +267,23 @@
         }
 
         .link-category li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .link-category a {
-            color: #aaa;
+            color: #bbb;
             text-decoration: none;
             transition: all 0.3s;
             display: block;
-            padding: 5px;
+            padding: 6px;
             border-radius: 5px;
+            font-size: 16px;
         }
 
         .link-category a:hover {
-            color: #e0e0e0;
+            color: #f5f5f5;
             background: #2a2a2a;
-            padding-left: 10px;
+            padding-left: 12px;
         }
 
         /* Scrollbar styling */
@@ -309,7 +309,9 @@
 <body>
     <div class="container">
         <div class="logo-section">
-            <img src="logo.png" alt="Logo" class="logo">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
         </div>
 
         <div class="search-section">
@@ -336,17 +338,6 @@
                     <li><a href="https://www.fide.com">FIDE</a></li>
                     <li><a href="https://www.en.chessbase.com">ChessBase</a></li>
                     <li><a href="https://www.wintrchess.com">WintrChess</a></li>
-                </ul>
-            </div>
-
-            <div class="link-category">
-                <h3>Development</h3>
-                <ul>
-                    <li><a href="https://www.python.org">Python</a></li>
-                    <li><a href="https://www.github.com">GitHub</a></li>
-                    <li><a href="https://devdocs.io">DevDocs</a></li>
-                    <li><a href="https://stackoverflow.com">StackOverflow</a></li>
-                    <li><a href="https://gitlab.com">Gitlab</a></li>
                 </ul>
             </div>
 
@@ -523,4 +514,3 @@
     </script>
 </body>
 </html>
-
